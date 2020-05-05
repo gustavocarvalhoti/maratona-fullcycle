@@ -1,7 +1,7 @@
-var app = require('express')();
-var port = process.env.port || 3000;
+const app = require('express')();
+const port = process.env.port || 3000;
 
-app.listen(process.env.port || 3000, (req, res) => {
+app.listen(process.env.port || 3000, () => {
     console.log(`Servidor rodando na porta ${port}`);
 });
 
