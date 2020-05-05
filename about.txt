@@ -1,0 +1,51 @@
+###Fullcycle - Ciclo completo, desenvolvimento, teste, deploy e motitoramento.
+Estudo de Caso - Plataforma de transmissão de Lives
+
+##Anotações gerais
+````
+3 Pilares   - Operar o que vc constroi, Ferramentas, Full Cycle Developer
+Monolitico  - Tudo no mesmo lugar, MVC
+
+Microserviçoes  - Evaolução do Monolitico
+Criar o MS baseado no negócio
+Sistema comum com responsabilidades pequenas
+9 caracteristicas do MS
+1 - Componentizar projeto
+2 - Organização em torno do negócio
+3 - Baseada em produtos
+4 - Pequenos endpoints
+5 - Governança descentralizada
+6 - Cada MS tem seu banco de dados
+7 - Automatizar a estrutura
+8 - Desenhados para falhar, politicas fallback e retry
+9 - Design evolutivo
+
+Microsserviços
+****************************************************
+Gerador de Lives (Live Generator) ->
+Visualizar lives criadas
+Criar Lives
+Peers para WebRTC
+Websockets
+gRPC Server
+
+Streaming ->
+Transmissão
+Visualização
+Exibir chat e iteração do Chat - Envio comando CodeBot
+
+Chat ->
+Comunicação em tempo real
+Armazenar mensagens
+Enviar MSG para fila
+
+CodeBot ->
+Retorna a resposta dos comandos
+****************************************************
+
+
+
+
+
+
+````
