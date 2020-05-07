@@ -1,0 +1,22 @@
+{
+  "name": "maratona-api",
+  "version": "0.0.1",
+  "description": "API Maratona",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start:prod": "node index.js"
+  },
+  "author": "Gustavo Carvalho da Silva",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "consign": "^0.1.6",
+    "express": "^4.16.3",
+    "express-validator": "^5.2.0",
+    "sequelize": "^4.44.4",
+    "sqlite3": "^4.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5"
+  }
+}

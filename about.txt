@@ -22,30 +22,75 @@ Sistema comum com responsabilidades pequenas
 
 Microsserviços
 ****************************************************
-Gerador de Lives (Live Generator) ->
-Visualizar lives criadas
-Criar Lives
-Peers para WebRTC
-Websockets
-gRPC Server
+#Gerador de Lives (Live Manager) ->
+##Comunicação:
+Live Manager -> Streaming e Live Manager -> Chat
+##Estrutura:
+Next.js, API Rest, Websocket Server, MySQL, Redis (Banco em memória).
+SPA (Single Page Application), React, Material UI
+##Funções:
+Visualizar lives criadas, Criar Lives, Peers para WebRTC, Websockets,
+gRPC Server, gerencia todos os processos da live
 
-Streaming ->
-Transmissão
-Visualização
-Exibir chat e iteração do Chat - Envio comando CodeBot
+#Streaming -> SPA
+##Comunicação:
+Streaming -> Chat
+##Estrutura:
+SPA, React, Material UI, HTTP Request, Websocket, WebRTC (Real time communication), gRPC, postgres
+##Funções:
+Transmissão, Visualização, Exibir chat e iteração do Chat - Envio comando CodeBot
 
-Chat ->
-Comunicação em tempo real
-Armazenar mensagens
-Enviar MSG para fila
+#Chat ->
+##Estrutura:
+Nest.js, gRPC, Redis, Websocket, MySQL, RabbitMQ, Comunicação em tempo real,
+Armazenar mensagens, Enviar MSG para fila
 
-CodeBot ->
+#CodeBot ->
+##Funções:
 Retorna a resposta dos comandos
+
 ****************************************************
 
+WebRTC - Para acessar o microfone e a camera
+RabbitMQ - Gerencia as filas
+gRPC - Para executar uma função de um servidor no outro, utiliza peotocol buffers,
+trafega muito rápido por HTTP2.
 
+****************************************************
+#NestJS - Compilado em typescript
+https://nestjs.com/
+Framework modular
 
+##Comands
+sudo npm install -g @nestjs/cli
+nest new hello-world-nestjs         <- Cria o projeto
+npm start
+nest generate controller teste      <- Cria um controller
+npm run start:dev                   <- Hot deploy
 
+##Sobre o projeto
+dist - Os arquivos gerados caem lá
 
+****************************************************
+#Micro Live Manager
 
+##Comands
+cd micro-live-manager
+docker-compose up                   <- Instala e configura as imagens no docker
+docker-compose exec backend bash
+
+#MATERIAL-UI - Componentes React para um desenvolvimento mais rápido e fácil.
+Componentes visuais
+https://material-ui.com/pt/
+
+#Validações do Formulário e Validar dados Yup
+https://react-hook-form.com/
+https://github.com/jquense/yup
+
+#Migrations - executa ao iniciar o projeto, igual ao Liquibase
+
+#Websocket
+Inicia o processo de comunicação HTTP mas mantem a conexão TCP aberta
+Realtime Apps
+12:25
 ````
