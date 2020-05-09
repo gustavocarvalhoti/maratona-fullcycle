@@ -1,15 +1,14 @@
-###Fullcycle - Ciclo completo, desenvolvimento, teste, deploy e motitoramento.
+###Fullcycle - Ciclo completo, desenvolvimento, teste, deploy e monitoramento.
 Estudo de Caso - Plataforma de transmissão de Lives
 
 ##Anotações gerais
 ````
-3 Pilares   - Operar o que vc constroi, Ferramentas, Full Cycle Developer
-Monolitico  - Tudo no mesmo lugar, MVC
+3 Pilares   - Operar o que vc constrói, Ferramentas, Full Cycle Developer
+Monolítico  - Tudo no mesmo lugar, MVC
 
-Microserviçoes  - Evaolução do Monolitico
-Criar o MS baseado no negócio
-Sistema comum com responsabilidades pequenas
-9 caracteristicas do MS
+Micro Serviços  - Evolução do Monolítico
+Criar o MS baseado no negócio, sistema comum com responsabilidades pequenas
+Características do MS ->
 1 - Componentizar projeto
 2 - Organização em torno do negócio
 3 - Baseada em produtos
@@ -17,12 +16,12 @@ Sistema comum com responsabilidades pequenas
 5 - Governança descentralizada
 6 - Cada MS tem seu banco de dados
 7 - Automatizar a estrutura
-8 - Desenhados para falhar, politicas fallback e retry
+8 - Desenhados para falhar, políticas fallback e retry
 9 - Design evolutivo
 
 Microsserviços
 ****************************************************
-#Gerador de Lives (Live Manager) ->
+#Gerador de Lives (Live Manager) - micro-live-manager ->
 ##Comunicação:
 Live Manager -> Streaming e Live Manager -> Chat
 ##Estrutura:
@@ -32,7 +31,7 @@ SPA (Single Page Application), React, Material UI
 Visualizar lives criadas, Criar Lives, Peers para WebRTC, Websockets,
 gRPC Server, gerencia todos os processos da live
 
-#Streaming -> SPA
+#Streaming  - micro-live-streaming -> SPA
 ##Comunicação:
 Streaming -> Chat
 ##Estrutura:
@@ -40,28 +39,41 @@ SPA, React, Material UI, HTTP Request, Websocket, WebRTC (Real time communicatio
 ##Funções:
 Transmissão, Visualização, Exibir chat e iteração do Chat - Envio comando CodeBot
 
-#Chat ->
+#Chat - micro-live-chat -->
 ##Estrutura:
-Nest.js, gRPC, Redis, Websocket, MySQL, RabbitMQ, Comunicação em tempo real,
-Armazenar mensagens, Enviar MSG para fila
+Nest.js, gRPC, Redis, Websocket, MySQL, RabbitMQ, Elastic Source, Code Bot em GO
+Comunicação em tempo real, Armazenar mensagens, Enviar MSG para fila
 
-#CodeBot ->
-##Funções:
-Retorna a resposta dos comandos
+#Code Bot ->
+##Funções: Retorna a resposta dos comandos
 
 ****************************************************
+WebRTC - Para acessar o microfone e a câmera - Conexão ponto a ponto, criado pelo google em 2011, dá até para compartilhar tela.
+No projeto comunicaremos por Peer(), passando pelo WebSocket
 
-WebRTC - Para acessar o microfone e a camera
-RabbitMQ - Gerencia as filas
-gRPC - Para executar uma função de um servidor no outro, utiliza peotocol buffers,
+RabbitMQ - Gerenciar as filas - Intermediador para entregar as mensagens
+Publisher -> Exchange (Gerenciar para onde vai a informação) -> Queue (Fila) -> Consumer
+Exchange  -> Pode pegar a informação e mandar para todas as filas
+Fanout    -> Para todas as filas
+Topic     -> Torei para as filas de acordo com a regra
+Producer  -> Exchange - Queue - Consumer1
+                        Queue - Consumer2
+                        Queue - Consumer3
+
+gRPC - Framwork Google - HTTP/2 - Para executar uma função de um servidor no outro, utiliza protocol buffers,
 trafega muito rápido por HTTP2.
+Ideal para microsserviços, para trabalhar no Browser não é muito bom, para Back e Mobile é bom.
+Gera as bibliotecas automaticamente.
+Bidirecional HTTP/2, ele abre uma conexão e passa muita informação, até streaming de dados.
+Linguagens implementadas dele: GO, Java, C <- O C libera diversas linguagens Node, inclusive Node.
+Protocol Buffers -> XML rápido, ele é binário, por isso é menor comparado com o JSON.
 
 ****************************************************
 #NestJS - Compilado em typescript
 https://nestjs.com/
 Framework modular
 
-##Comands
+##Comandos
 sudo npm install -g @nestjs/cli
 nest new hello-world-nestjs         <- Cria o projeto
 npm start
@@ -74,7 +86,7 @@ dist - Os arquivos gerados caem lá
 ****************************************************
 #Micro Live Manager
 
-##Comands
+##Comandos
 cd micro-live-manager
 docker-compose up                   <- Instala e configura as imagens no docker
 docker-compose exec backend bash
@@ -90,7 +102,17 @@ https://github.com/jquense/yup
 #Migrations - executa ao iniciar o projeto, igual ao Liquibase
 
 #Websocket
-Inicia o processo de comunicação HTTP mas mantem a conexão TCP aberta
+Inicia o processo de comunicação HTTP mas mantém a conexão TCP aberta
 Realtime Apps
-12:25
+
+##Deploy com Docker e Kubernetes
+CI - Continuous Integration
+CD - Continuous Delivery
+###Kubernetes
+Pod - 1 ou mais containers
+Deployment - Criar 3 réplicas, 3 pods
+Services - Gerencia os pods, chama os caras para trabalhar
+NodePort, ClusterIP, Load Balancer
+Minikube - Para testar local
+Istio - Service Mesh
 ````

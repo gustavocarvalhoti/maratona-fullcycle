@@ -8,7 +8,7 @@ module.exports = app => {
                     "post": {
                         url: "http://localhost:3000/maratona",
                         body: "{\n" +
-                            "\t\"aula\": \"REACT\"\n" +
+                            "\t\"aula\": \"Skills de um Dev Full Cycle com Rodrigo Branas e Henrique Bastos\"\n" +
                             "}"
                     }
                 }
